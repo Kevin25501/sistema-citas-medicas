@@ -1,0 +1,4 @@
+DATABASE_URL=postgresql://usuario:contraseña@localhost:5432/citas_medicas
+SECRET_KEY=mi_clave_secreta_super_segura_12345
+ALGORITHM=HS256
+ACCESS_TOKEN_EXPIRE_MINUTES=30
