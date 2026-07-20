@@ -24,3 +24,13 @@ class Cita(Base):
     
     paciente = relationship("Paciente")
     medico = relationship("Medico")
+    # Validación adicional para evitar citas en el pasado
+def validar_fecha_cita(fecha_str: str) -> bool:
+    """Valida que la fecha de la cita no sea anterior a hoy."""
+    from datetime import date
+    try:
+        dia, mes, anio = map(int, fecha_str.split('/'))
+        fecha_cita = date(anio, mes, dia)
+        return fecha_cita >= date.today()
+    except ValueError:
+        return False
