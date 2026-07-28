@@ -1,0 +1,1 @@
+Commit 1: Configurar entorno de pruebas con Pytest y Coverage

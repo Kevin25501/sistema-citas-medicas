@@ -1,0 +1,12 @@
+
+[run]
+source = app
+omit = 
+    app/__init__.py
+    app/database.py
+    app/main.py
+    app/config.py
+
+[report]
+show_missing = True
+fail_under = 60
