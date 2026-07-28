@@ -1,1 +1,0 @@
-Commit 7: Ajustar configuración de Coverage para alcanzar 60%

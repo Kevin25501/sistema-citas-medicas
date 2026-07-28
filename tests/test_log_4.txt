@@ -1,1 +1,0 @@
-Commit 4: Agregar tests para el módulo de Médicos

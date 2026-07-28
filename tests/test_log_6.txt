@@ -1,1 +1,0 @@
-Commit 6: Configurar base de datos SQLite en memoria para tests

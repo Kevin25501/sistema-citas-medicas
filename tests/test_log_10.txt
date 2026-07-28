@@ -1,1 +1,0 @@
-Commit 10: Versión final con cobertura de pruebas >= 60%

@@ -1,1 +1,0 @@
-Commit 2: Agregar tests para el endpoint raíz (/)
