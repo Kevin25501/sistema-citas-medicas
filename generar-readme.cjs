@@ -1,4 +1,8 @@
+const fs = require('fs');
+const path = require('path');
 
+const readmePath = path.join(__dirname, 'README.md');
+const readmeContent = `
 # 🏥 Sistema de Gestión de Citas Médicas - Consultorio San Rafael
 
 ## 📋 Descripción del Proyecto
@@ -29,17 +33,21 @@ El sistema sigue una arquitectura **Cliente-Servidor** separando completamente e
 
 ### Backend
 1. Clonar el repositorio.
-2. Instalar dependencias: `pip install -r requirements.txt`
+2. Instalar dependencias: \`pip install -r requirements.txt\`
 3. Configurar variables de entorno (DATABASE_URL, SECRET_KEY).
-4. Ejecutar: `uvicorn app.main:app --reload`
+4. Ejecutar: \`uvicorn app.main:app --reload\`
 
 ### Frontend
-1. Entrar a la carpeta `frontend-citas`.
-2. Instalar dependencias: `npm install`
-3. Ejecutar: `npm run dev`
+1. Entrar a la carpeta \`frontend-citas\`.
+2. Instalar dependencias: \`npm install\`
+3. Ejecutar: \`npm run dev\`
 
 ## 👥 Equipo de Desarrollo y Tareas
 Kevin Alvarado
 
 ## 📄 Licencia
 Material para uso académico exclusivo - Universidad Politécnica Salesiana (2026)
+`;
+
+fs.writeFileSync(readmePath, readmeContent);
+console.log('✅ README.md generado exitosamente en la raíz del proyecto.');

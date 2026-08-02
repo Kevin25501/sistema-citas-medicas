@@ -14,11 +14,22 @@ class UsuarioRepository:
         return self.db.query(Usuario).filter(Usuario.id == usuario_id).first()
     
     def create_usuario(self, usuario: UsuarioCreate):
+        # TRAMPA: Vamos a ver qué está llegando realmente
+        print("🔍 DEBUG: Tipo de password =", type(usuario.password))
+        print("🔍 DEBUG: Valor de password =", repr(usuario.password))
+        print("🔍 DEBUG: Longitud de password =", len(str(usuario.password)))
+        
         db_usuario = Usuario(
             username=usuario.username,
             password_hash=hash_password(usuario.password),
-            perfil_id=usuario.perfil_id
+            perfil_id=usuario.perfil_id,
+            estado=True
         )
+        self.db.add(db_usuario)
+        self.db.commit()
+        self.db.refresh(db_usuario)
+        return db_usuario
+
         self.db.add(db_usuario)
         self.db.commit()
         self.db.refresh(db_usuario)

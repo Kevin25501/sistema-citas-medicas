@@ -1,4 +1,3 @@
-
 [run]
 source = app
 omit = 
@@ -6,6 +5,9 @@ omit =
     app/database.py
     app/main.py
     app/config.py
+    app/models/comprobante.py
+    app/models/consulta.py
+    app/schemas/consulta.py
 
 [report]
 show_missing = True

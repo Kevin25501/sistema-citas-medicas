@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Session
 from app.repositories.usuario_repository import UsuarioRepository
-from app.schemas.usuario import UsuarioCreate, UsuarioResponse, LoginRequest
+from app.schemas.usuario import UsuarioCreate, UsuarioResponse
 from app.security.password_handler import verify_password
 from app.security.jwt_handler import create_access_token
 

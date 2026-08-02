@@ -1,4 +1,4 @@
-from pydantic import BaseModel, EmailStr, Field
+from pydantic import BaseModel, EmailStr, Field, ConfigDict
 from typing import Optional
 from datetime import date
 
@@ -12,3 +12,12 @@ class PacienteBase(BaseModel):
     correo: Optional[EmailStr] = None
     tipo_sangre: Optional[str] = Field(None, max_length=5)
     alergias: Optional[str] = Field(None, max_length=255)
+
+class PacienteCreate(PacienteBase):
+    pass
+
+class PacienteResponse(PacienteBase):
+    id: int
+    
+    # Configuración para que Pydantic V2 lea desde objetos de SQLAlchemy
+    model_config = ConfigDict(from_attributes=True)
