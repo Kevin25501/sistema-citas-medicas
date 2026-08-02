@@ -27,5 +27,9 @@ class UsuarioService:
         if not usuario.estado:
             raise ValueError("Usuario inactivo")
         
-        access_token = create_access_token(data={"sub": usuario.username, "id": usuario.id})
-        return {"access_token": access_token, "token_type": "bearer"}
+        access_token = create_access_token(data={
+            "sub": usuario.username,
+            "id": usuario.id,
+            "paciente_id": usuario.paciente_id
+        })
+        return {"access_token": access_token, "token_type": "bearer", "paciente_id": usuario.paciente_id}

@@ -1,0 +1,28 @@
+REPORTE DE ANÁLISIS - 1/8/2026, 7:49:09 p. m.
+
+BACKEND: ✅
+  ✅ main.py
+  ✅ models/usuario.py
+  ✅ models/medico.py
+  ✅ controllers/usuario_controller.py
+  ✅ services/usuario_service.py
+  ✅ repositories/usuario_repository.py
+
+FRONTEND: ✅
+  ✅ pages/AgendarCita.jsx
+  ✅ pages/MisCitas.jsx
+  ✅ pages/Dashboard.jsx
+  ✅ pages/Login.jsx
+  ✅ services/api.js
+  ✅ App.jsx
+
+CITAS MODULE: ✅
+
+CONEXIÓN: ✅
+  ❌ api.js no tiene función getMisCitas()
+
+
+TOTAL ERRORES: 1
+
+ERRORES DETALLADOS:
+  - ❌ api.js no tiene función getMisCitas()

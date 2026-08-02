@@ -1,4 +1,5 @@
 from fastapi import APIRouter, Depends, HTTPException
+from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import Session
 from typing import List
 from app.database import get_db
@@ -24,6 +25,13 @@ def agendar_cita(cita: CitaCreate, db: Session = Depends(get_db)):
         return service.agendar_cita(cita)
     except ValueError as e:
         raise HTTPException(status_code=400, detail=str(e))
+    except IntegrityError as e:
+        db.rollback()
+        # Suele pasar cuando paciente_id o medico_id no existen en la BD
+        raise HTTPException(
+            status_code=400,
+            detail="No se pudo agendar la cita: verifica que el paciente y el médico existan (paciente_id/medico_id inválidos)."
+        )
 
 @router.put("/{cita_id}/cancelar", response_model=CitaResponse)
 def cancelar_cita(cita_id: int, db: Session = Depends(get_db)):

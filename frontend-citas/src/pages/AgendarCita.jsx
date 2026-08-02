@@ -23,14 +23,42 @@ export default function AgendarCita() {
     fetchMedicos();
   }, []);
 
-  const handleSubmit = async (e) => {
+    const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await crearCita({ medico_id: Number(medicoId), fecha, hora, motivo });
+      // Obtener el token del localStorage
+      const token = localStorage.getItem('token');
+      
+      // Decodificar el token para obtener el paciente_id vinculado a este usuario.
+      // OJO: payload.id es el ID de la cuenta de LOGIN (tabla usuarios), NO el ID
+      // del paciente (tabla pacientes). Son entidades distintas. El backend ahora
+      // incluye paciente_id directamente en el token para evitar esa confusión.
+      const payload = JSON.parse(atob(token.split('.')[1]));
+      const pacienteId = payload.paciente_id;
+
+      if (!pacienteId) {
+        setMensaje('❌ Tu cuenta de usuario no tiene un paciente vinculado. Contacta al administrador para asociar tu registro de paciente antes de agendar.');
+        return;
+      }
+
+      // Enviar la cita con el paciente_id real
+      await crearCita({ 
+        medico_id: Number(medicoId), 
+        fecha, 
+        hora, 
+        motivo,
+        paciente_id: Number(pacienteId)
+      });
       setMensaje('✅ Cita agendada exitosamente');
       setTimeout(() => navigate('/dashboard'), 2000);
     } catch (error) {
-      setMensaje('❌ Error al agendar la cita');
+      const errorMsg = error.response?.data?.detail 
+        ? (Array.isArray(error.response.data.detail) 
+            ? error.response.data.detail.map(d => d.msg || d).join(' | ') 
+            : JSON.stringify(error.response.data.detail))
+        : error.message;
+      setMensaje('❌ Error: ' + errorMsg);
+      console.error("Detalle del error:", error.response?.data);
     }
   };
 

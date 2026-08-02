@@ -1,0 +1,4 @@
+
+ CAMPOS QUE ENVÍA EL FRONTEND:
+   - medico_id
+   - usuario_id

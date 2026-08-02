@@ -28,8 +28,14 @@ export const getMedicos = async () => {
 };
 
 export const crearCita = async (citaData) => {
-  const response = await api.post('/api/citas', citaData);
+  const response = await api.post('/api/citas/', citaData);
   return response.data;
 };
 
 export default api;
+
+
+export const getMisCitas = async () => {
+  const response = await api.get('/api/citas/');
+  return response.data;
+};

@@ -9,9 +9,11 @@ class Usuario(Base):
     username = Column(String(50), unique=True, index=True, nullable=False)
     password_hash = Column(String(255), nullable=False)
     perfil_id = Column(Integer, ForeignKey("perfiles.id"))
+    paciente_id = Column(Integer, ForeignKey("pacientes.id"), nullable=True)
     estado = Column(Boolean, default=True)
     
     perfil = relationship("Perfil")
+    paciente = relationship("Paciente")
 
 class Perfil(Base):
     __tablename__ = "perfiles"
